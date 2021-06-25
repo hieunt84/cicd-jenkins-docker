@@ -22,7 +22,7 @@ systemctl stop firewalld
 systemctl disable firewalld
 
 # config hostname
-hostnamectl set-hostname node1
+# hostnamectl set-hostname node1
 
 # config file host
 cat >> "/etc/hosts" <<END

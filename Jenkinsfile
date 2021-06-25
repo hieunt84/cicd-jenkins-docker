@@ -19,6 +19,12 @@ pipeline {
                 sh "docker push happyit/myweb:${DOCKER_TAG}"
             }
         }
+
+        stage('Deploy myweb With Docker') {
+            steps {
+                sh 'docker run --privileged -p 80:80 --name myapp -d happyit/myweb:${DOCKER_TAG}'
+            }
+        }
     }
 }
 
