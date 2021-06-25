@@ -21,7 +21,8 @@ pipeline {
         }
 
         stage('Deploy myweb With Docker') {
-            steps {
+                sh 'docker stop myweb'
+                sh 'docker rm myweb'
                 sh 'docker run --privileged --name myweb -d happyit/myweb:${DOCKER_TAG}'
             }
         }
