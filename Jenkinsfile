@@ -5,7 +5,7 @@ pipeline {
     }
         stage('Stage Build With Docker image') {
             steps {         
-                sh 'docker build . -t happyit/myapp:${DOCKER_TAG}'
+                sh 'docker build . -t happyit/myweb:${DOCKER_TAG}'
             }
         }
 
@@ -14,13 +14,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'docker_hub', variable: 'DockerHubPwd')]) {
                     sh 'docker login -u happyit -p ${DockerHubPwd}'
                 }               
-                sh 'docker push happyit/myapp:${DOCKER_TAG}'
-            }
-        }
-
-        stage('Deploy my app Docker') {
-            steps {                         
-                sh 'docker push happyit/myapp:${DOCKER_TAG}'
+                sh 'docker push happyit/myweb:${DOCKER_TAG}'
             }
         }
                     
