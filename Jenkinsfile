@@ -3,8 +3,10 @@ pipeline {
     environment {
       DOCKER_TAG = getVersion()
     }
+
+    stages {
         stage('Stage Build With Docker image') {
-            steps {         
+            steps {
                 sh 'docker build . -t happyit/myweb:${DOCKER_TAG}'
             }
         }
@@ -13,11 +15,10 @@ pipeline {
             steps { 
                 withCredentials([string(credentialsId: 'docker_hub', variable: 'DockerHubPwd')]) {
                     sh 'docker login -u happyit -p ${DockerHubPwd}'
-                }               
-                sh 'docker push happyit/myweb:${DOCKER_TAG}'
+                }          
+                sh "docker push happyit/myweb:${DOCKER_TAG}"
             }
         }
-                    
     }
 }
 
