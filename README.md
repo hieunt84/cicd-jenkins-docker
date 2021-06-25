@@ -14,7 +14,7 @@
     - suggested plugin
 
 ### Step 3: Create pipeline job on jenkins
-    - Config withCredentials for docker-hub
+    - Config Credentials for docker-hub with name docker-hub
     - Create Jenkinsfile
 
 ### Step 4: Run job
@@ -23,4 +23,8 @@
 
 ### Step 5: Enjoy !!!
     curl http://localhost
+
+### Notes
+    Chỉ chạy được 1 lần
+    Lần sau chạy bi xung đột
 
