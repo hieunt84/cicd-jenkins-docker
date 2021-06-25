@@ -26,5 +26,5 @@
 
 ### Notes
     Chỉ chạy được 1 lần
-    Lần sau chạy bi xung đột
+    Lần sau chạy bi xung đột cần code lại
 
