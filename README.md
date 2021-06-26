@@ -13,6 +13,8 @@
 ### Step 2: Setup plugin jenkins
     - suggested plugin
     - docker pipeline plugin
+    - Kubernetes Continuous Deploy plugin
+
 
 ### Step 3: Create pipeline job on jenkins
     - Config Credentials for docker-hub with name docker-hub
