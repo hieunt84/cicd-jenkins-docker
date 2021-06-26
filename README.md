@@ -13,8 +13,6 @@
 ### Step 2: Setup plugin jenkins
     - suggested plugin
     - docker pipeline plugin
-    - Kubernetes Continuous Deploy plugin
-
 
 ### Step 3: Create pipeline job on jenkins
     - Config Credentials for docker-hub with name docker-hub
@@ -31,3 +29,22 @@
     Chỉ chạy được 1 lần
     Lần sau chạy bi xung đột cần code lại
 
+### Commnad
+    docker run  -v /var/run/docker.sock:/var/run/docker.sock \
+    
+                -v $(which docker):$(which docker) \
+    
+                --privileged \
+    
+                -v $SH/$WORK_DIR:/var/jenkins_home  \
+    
+                -p $PORT:8080  \
+    
+                --user 0:0 \
+    
+                --name $C_NAME \
+    
+                -d $IMAGE 
+    
+    docker run --privileged -p 80:80 --name myapp -d nginx
+    
