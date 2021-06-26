@@ -1,18 +1,30 @@
 pipeline {
     agent any
     environment {
-      registry = "happyit/myweb:1111"
+      registry = "happyit/myweb"
+      dockerImage = ""
+      registryCredential = 'dockerhub'
     }
 
     stages {
         
-        stage('Build image code version 2') {
+        stage('Build image') {
           steps{
             script {
-              dockerImage = docker.build registry
+              dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
           }
         }       
+
+        stage('Push Image') {
+          steps{
+            script {
+              docker.withRegistry( "", registryCredential ) {
+                dockerImage.push()
+              }
+            }
+          }
+        }        
 
     }
 }

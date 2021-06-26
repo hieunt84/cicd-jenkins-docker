@@ -12,6 +12,7 @@
 
 ### Step 2: Setup plugin jenkins
     - suggested plugin
+    - docker pipeline plugin
 
 ### Step 3: Create pipeline job on jenkins
     - Config Credentials for docker-hub with name docker-hub

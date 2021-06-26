@@ -83,7 +83,10 @@ sudo yum install -y jenkins
 sudo systemctl daemon-reload
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+#config jenkins have permission with docker deamon
+sudo usermod -a -G docker jenkins
+sudo systemctl restart jenkins
 
 ##########################################################################################
 # SECTION 4: INSTALL Git
