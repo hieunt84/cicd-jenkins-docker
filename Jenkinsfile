@@ -2,14 +2,25 @@ pipeline {
     agent any
     environment {
       DOCKER_TAG = getVersion()
+      registry = "happyit/myweb"
     }
 
     stages {
-        stage('Stage Build With Docker image') {
-            steps {
-                sh 'docker build . -t happyit/myweb:${DOCKER_TAG}'
+
+        
+        stage('Build image code version 2') {
+          steps{
+            script {
+              dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
-        }
+          }
+        }       
+
+//        stage('Stage Build With Docker image') {
+//            steps {
+//                sh 'docker build . -t happyit/myweb:${DOCKER_TAG}'
+//            }
+//        }
 
         stage('Stage Docker Hub Push') {
             steps { 
@@ -22,8 +33,8 @@ pipeline {
 
         stage('Deploy myweb With Docker') {
             steps {
-                sh 'docker stop myweb >/dev/null 2>&1'
-                sh 'docker rm myweb >/dev/null 2>&1'
+//                sh 'docker stop myweb >/dev/null 2>&1'
+//                sh 'docker rm myweb >/dev/null 2>&1'
                 sh 'docker run --privileged --name myweb -d happyit/myweb:${DOCKER_TAG}'
             }
         }
